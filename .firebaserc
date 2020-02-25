@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "dev": "admin-demo-e2b3f",
+    "stage": "admin-demo-e2b3f",
+    "prod": "admin-demo-e2b3f"
+  }
+}

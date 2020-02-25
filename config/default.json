@@ -1,0 +1,13 @@
+{
+  "Internalization": {
+    "LOCALES": ["en", "de", "fr", "nl"],
+    "DEFAULT_LOCALE": "en"
+  },
+  "Algolia": {
+    "APP_ID": "",
+    "API_KEY": ""
+  },
+  "Google": {
+    "API_KEY": ""
+  }
+}

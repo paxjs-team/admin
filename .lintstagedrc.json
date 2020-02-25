@@ -1,0 +1,12 @@
+{
+  "linters": {
+    "**/*.{js,json,md,prettierrc,eslintrc,lintstagedrc,firebaserc,babelrc,sublime-project}": [
+      "pretty-quick --staged",
+      "git add"
+    ],
+    "./{packages,scripts}/**/*.js": ["eslint --fix --max-warnings=0", "git add"]
+  },
+  "globOptions": {
+    "dot": true
+  }
+}

@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+@font-face {
+  font-family: 'SanFranciscoText-Medium';
+  src: local('SanFranciscoText-Medium'),
+    url('../../../assets/fonts/SanFranciscoText-Medium.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'SanFranciscoText-LightItalic';
+  src: local('SanFranciscoText-LightItalic'),
+    url('../../../assets/fonts/SanFranciscoText-LightItalic.woff2')
+      format('woff2');
+}
+
+@font-face {
+  font-family: 'SanFranciscoText-Semibold';
+  src: local('SanFranciscoText-Semibold'),
+    url('../../../assets/fonts/SanFranciscoText-Semibold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'SanFranciscoText-Light';
+  src: local('SanFranciscoText-Light'),
+    url('../../../assets/fonts/SanFranciscoText-Light.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Now-Regular';
+  src: local('Now-Regular'),
+    url('../../../assets/fonts/Now-Regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Now-Black';
+  src: local('Now-Black'),
+    url('../../../assets/fonts/Now-Black.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Now-Medium';
+  src: local('Now-Medium'),
+    url('../../../assets/fonts/Now-Medium.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Now-Bold';
+  src: local('Now-Bold'),
+    url('../../../assets/fonts/Now-Bold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Now-Light';
+  src: local('Now-Light'),
+    url('../../../assets/fonts/Now-Light.woff') format('woff');
+}

@@ -1,0 +1,15 @@
+{
+  "Facebook": {
+    "APP_ID": "604022670145500"
+  },
+  "Firebase": {
+    "API_KEY": "AIzaSyCEW41D2aa_QHvWRRk2CsaAPP8PzT8JmnQ",
+    "AUTH_DOMAIN": "admin-demo-e2b3f.firebaseapp.com",
+    "DATABASE_URL": "https://admin-demo-e2b3f.firebaseio.com",
+    "PROJECT_ID": "admin-demo-e2b3f",
+    "STORAGE_BUCKET": "gs://admin-demo-e2b3f.appspot.com/"
+  },
+  "PrivateApi": {
+    "API_URL": "https://us-central1-admin-demo-e2b3f.cloudfunctions.net"
+  }
+}

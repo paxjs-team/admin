@@ -1,0 +1,32 @@
+**/node_modules/**/*
+temp/
+.expo/*
+npm-debug.*
+.DS_Store
+.vscode
+.expo
+yarn.lock
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log
+lerna-debug.log
+firebase-debug.log
+Preview.html
+yarn.lock
+**/build/
+*.sublime-workspace
+.firebase/
+**/.pnp
+.pnp.js
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+package-lock.json
+
+# IntelliJ IDE (PhpStorm, WebStorm) specific systemjs file
+# that enables babel-plugin-module-resolver.
+module-resolver.system.js
+
+# IntelliJ IDE (PhpStorm, WebStorm) environment folder.
+.idea
