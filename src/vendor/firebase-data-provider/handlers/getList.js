@@ -20,7 +20,7 @@ export default async function(resource, params) {
   let ids = [],
     data = [],
     total = 0,
-    values = []
+    matchedRecords = []
 
   // Copy the filter params so we can modify for GET_MANY_REFERENCE support.
   const filter = Object.assign({}, params.filter)
@@ -33,18 +33,31 @@ export default async function(resource, params) {
 
   /* TODO Must have a better way */
   if (filterKeys.length) {
-    Object.values(resourceData).forEach(value => {
+    Object.values(resourceData).forEach(record => {
       let filterIndex = 0
 
       while (filterIndex < filterKeys.length) {
-        let property = filterKeys[filterIndex]
+        let propertyToFilter = filterKeys[filterIndex]
 
-        if (isObject(property) && !value[property]) {
+        let propertyValue
+
+        if (record[propertyToFilter]) {
+          propertyValue = record[propertyToFilter]
+        } else if (
+          resource.customFilters &&
+          resource.customFilters[propertyToFilter]
+        ) {
+          const derivedPropertyGetter = resource.customFilters[propertyToFilter]
+
+          propertyValue = derivedPropertyGetter(record)
+        }
+
+        if (isObject(propertyToFilter) && !propertyValue) {
           return
         }
 
-        if (Array.isArray(filter[property])) {
-          let propertyValue = value[property]
+        if (Array.isArray(filter[propertyToFilter])) {
+          let propertyValue = propertyValue
 
           if (!propertyValue) {
             return
@@ -59,21 +72,21 @@ export default async function(resource, params) {
             }
           }
 
-          if (!intersection(filter[property], propertyValue).length) {
+          if (!intersection(filter[propertyToFilter], propertyValue).length) {
             return
           }
         } else if (
-          property !== 'q' &&
-          ((value[property] !== filter[property] &&
-            !isArray(filter[property])) ||
-            (isArray(filter[property]) &&
-              filter[property].indexOf(value[property]) === -1))
+          propertyToFilter !== 'q' &&
+          ((propertyValue !== filter[propertyToFilter] &&
+            !isArray(filter[propertyToFilter])) ||
+            (isArray(filter[propertyToFilter]) &&
+              filter[propertyToFilter].indexOf(propertyValue) === -1))
         ) {
           return
-        } else if (property === 'q') {
+        } else if (propertyToFilter === 'q') {
           const pattern = new RegExp(filter['q'], 'i')
 
-          if (!pattern.test(JSON.stringify(value))) {
+          if (!pattern.test(JSON.stringify(record))) {
             return
           }
         }
@@ -81,14 +94,14 @@ export default async function(resource, params) {
         filterIndex++
       }
 
-      values.push(value)
+      matchedRecords.push(record)
     })
   } else {
-    values = Object.values(resourceData)
+    matchedRecords = Object.values(resourceData)
   }
 
   if (params.sort) {
-    arraySort(values, params.sort.field, {
+    arraySort(matchedRecords, params.sort.field, {
       reverse: params.sort.order !== 'ASC',
     })
   }
@@ -97,9 +110,9 @@ export default async function(resource, params) {
   const _start = (page - 1) * perPage
   const _end = page * perPage
 
-  data = values.slice(_start, _end)
+  data = matchedRecords.slice(_start, _end)
   ids = data.map(item => item.id)
-  total = values.length
+  total = matchedRecords.length
 
   return { data, ids, total }
 }
