@@ -57,22 +57,22 @@ export default async function(resource, params) {
         }
 
         if (Array.isArray(filter[propertyToFilter])) {
-          let propertyValue = propertyValue
+          let value = propertyValue
 
-          if (!propertyValue) {
+          if (!value) {
             return
           }
 
-          if (!Array.isArray(propertyValue)) {
+          if (!Array.isArray(value)) {
             // handle ID -> Boolean and ID -> Number maps
-            if (isObject(propertyValue)) {
-              propertyValue = Object.keys(propertyValue)
+            if (isObject(value)) {
+              value = Object.keys(value)
             } else {
-              propertyValue = [propertyValue]
+              value = [value]
             }
           }
 
-          if (!intersection(filter[propertyToFilter], propertyValue).length) {
+          if (!intersection(filter[propertyToFilter], value).length) {
             return
           }
         } else if (
