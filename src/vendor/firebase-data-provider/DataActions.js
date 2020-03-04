@@ -5,6 +5,7 @@
  */
 
 import { CREATE, UPDATE, DELETE, SET } from './DataActionTypes'
+import ServerTimestamp from './ServerTimestamp'
 const firebaseKey = require('firebase-key')
 
 export function create({ data, resource }) {
@@ -29,7 +30,11 @@ export function create({ data, resource }) {
   }
 }
 
-export function update({ id, resource, diff }) {
+export function update({
+  id,
+  resource,
+  diff = { updatedAt: ServerTimestamp },
+}) {
   if (!resource) {
     throw new Error(
       'Resource is not declared. Failed to dispatch UPDATE action.'
